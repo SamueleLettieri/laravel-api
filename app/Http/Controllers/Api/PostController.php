@@ -15,14 +15,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user')->paginate(20);
+        $posts = Post::with('user')->paginate(101);
 
         return response()->json([
             'response' => true,
             'quantity' => count($posts),
-            'results' => [
-                'data' => $posts,
-            ] 
+            'results' => $posts,
+
         ]);
     }
 
@@ -60,9 +59,8 @@ class PostController extends Controller
         if ($post) {
             return response()->json([
                 'response' => true,
-                'results' => [
-                    'data' => $post,
-                ]
+                'results' => $post,
+
             ]);
         }    
         else return response('', 404);
