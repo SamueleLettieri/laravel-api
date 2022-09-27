@@ -1909,7 +1909,18 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['post']
+  props: ['post'],
+  methods: {
+    ValidURL: function ValidURL(str) {
+      var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+
+      if (!regex.test(str)) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -2006,11 +2017,17 @@ var render = function render() {
     staticClass: "card-header"
   }, [_vm._v("\r\n            post\r\n        ")]), _vm._v(" "), _c("div", {
     staticClass: "text-center"
-  }, [_c("img", {
+  }, [_vm.ValidURL(_vm.post.post_image) ? _c("img", {
     staticClass: "card-img-top w-50 rounded-0 m-3",
     attrs: {
-      src: "".concat(_vm.post.post_image),
+      src: _vm.post.post_image,
       alt: "{post.title}img"
+    }
+  }) : _c("img", {
+    staticClass: "card-img-top w-50 rounded-0 m-3",
+    attrs: {
+      src: "storage/" + _vm.post.post_image,
+      alt: _vm.post.post_image
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
@@ -2018,11 +2035,7 @@ var render = function render() {
     staticClass: "card-title m-3"
   }, [_vm._v(_vm._s(_vm.post.user.name))]), _vm._v(" "), _c("h5", {
     staticClass: "card-title m-3"
-  }, _vm._l(_vm.post.tags, function (tag) {
-    return _c("div", {
-      key: tag.id
-    }, [_vm._v("\r\n                " + _vm._s(tag.name) + "\r\n            ")]);
-  }), 0), _vm._v(" "), _c("h3", {
+  }), _vm._v(" "), _c("h3", {
     staticClass: "card-title m-3"
   }, [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("p", {
     staticClass: "card-text m-3"
