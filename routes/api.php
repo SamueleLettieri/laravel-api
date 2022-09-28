@@ -20,7 +20,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::namespace('Api')->group(Function(){
+    /* posts */
     Route::get('/posts', 'PostController@index');
     Route::get('/posts/{id}', 'PostController@show');
     Route::middleware('auth:api')->delete('/posts/{id}', 'PostController@destroy');
+
+    /* tags */
+    Route::get('/tags', 'TagController@index');
+    Route::get('/tags/{id}', 'TagController@show');
+    Route::middleware('auth:api')->delete('/tags/{id}', 'TagController@destroy');
 });

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +15,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user.posts', 'tags')->paginate(101);
+        $tags = Tag::all();
 
         return response()->json([
             'response' => true,
-            'quantity' => count($posts),
-            'results' => $posts,
-
+            'quantity' => count($tags),
+            'results' => $tags,
         ]);
     }
 
@@ -54,12 +53,12 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::with('user')->find($id);
+        $tags = Tag::all()->find($id);
 
-        if ($post) {
+        if ($tags) {
             return response()->json([
                 'response' => true,
-                'results' => $post,
+                'results' => $tags,
 
             ]);
         }    
@@ -97,8 +96,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        Post::destroy($id);
+        Tag::destroy($id);
 
-         return response('', 204);
+        return response('', 204);
     }
 }

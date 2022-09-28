@@ -2031,11 +2031,19 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
-  }, [_c("h5", {
+  }, [_c("h3", {
     staticClass: "card-title m-3"
   }, [_vm._v(_vm._s(_vm.post.user.name))]), _vm._v(" "), _c("h5", {
     staticClass: "card-title m-3"
-  }), _vm._v(" "), _c("h3", {
+  }, _vm._l(_vm.post.tags, function (tag) {
+    return _c("span", {
+      key: tag.id
+    }, [_c("a", {
+      attrs: {
+        href: "#"
+      }
+    }, [_vm._v("\r\n                        #" + _vm._s(tag.name) + "\r\n                    ")])]);
+  }), 0), _vm._v(" "), _c("h3", {
     staticClass: "card-title m-3"
   }, [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("p", {
     staticClass: "card-text m-3"
